@@ -1,4 +1,5 @@
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
+import 'package:dashboard/src/pages/alert_form_page.dart';
 import 'package:dashboard/src/pages/home_page.dart';
 import 'package:flutter/material.dart';
 
@@ -40,30 +41,7 @@ class _ContollePageState extends State<ContollePage> {
       floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
       floatingActionButton: FloatingActionButton(
           onPressed: () {
-            //SHOW bottom sheet
-            showModalBottomSheet(
-                context: context,
-                builder: (context) {
-                  return SizedBox(
-                    height: 200,
-                    child: Column(
-                      children: [
-                        ListTile(
-                          title: const Text('Add Observation'),
-                          onTap: () {
-                            Navigator.pop(context);
-                          },
-                        ),
-                        ListTile(
-                          title: const Text('Add Report'),
-                          onTap: () {
-                            Navigator.pop(context);
-                          },
-                        ),
-                      ],
-                    ),
-                  );
-                });
+            Navigator.pushNamed(context, CreateAlertPage.name);
           },
           child: const Icon(Icons.add)),
       bottomNavigationBar: AnimatedBottomNavigationBar(

@@ -75,6 +75,74 @@ class _HomePageState extends State<HomePage> {
     ChartLine(day: 28, value: 4)
   ];
 
+  filter() {
+    //SHOW bottom sheet
+    showModalBottomSheet(
+        context: context,
+        builder: (context) {
+          return SizedBox(
+            height: 500,
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    IconButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      icon: const Icon(Icons.close),
+                    ),
+                    const Spacer(),
+                    const Text(
+                      "Filter by",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 18,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    const Spacer(),
+                    TextButton(
+                        onPressed: () {}, child: const Text("clear all")),
+                  ],
+                ),
+                //  create a list tile that have icon and text and leading and trailing
+                const ListTile(
+                  leading: Icon(Icons.calendar_month_outlined),
+                  title: Text("Date"),
+                  trailing: Icon(Icons.arrow_forward_ios),
+                ),
+                const ListTile(
+                  leading: Icon(Icons.stacked_line_chart),
+                  title: Text("Type"),
+                  trailing: Icon(Icons.arrow_forward_ios),
+                ),
+                const ListTile(
+                  leading: Icon(Icons.warning),
+                  title: Text("Status"),
+                  trailing: Icon(Icons.arrow_forward_ios),
+                ),
+                const ListTile(
+                  leading: Icon(Icons.category_outlined),
+                  title: Text("Category"),
+                  trailing: Icon(Icons.arrow_forward_ios),
+                ),
+                const ListTile(
+                  leading: Icon(Icons.category),
+                  title: Text("Subcategory"),
+                  trailing: Icon(Icons.arrow_forward_ios),
+                ),
+                const ListTile(
+                  leading: Icon(Icons.tag_sharp),
+                  title: Text("Tags"),
+                  trailing: Icon(Icons.arrow_forward_ios),
+                ),
+              ],
+            ),
+          );
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -142,7 +210,7 @@ class _HomePageState extends State<HomePage> {
                     }),
               ).paddingSymmetric(horizontal: 10),
             ),
-            ObservationChart(data: data),
+            ObservationChart(data: data, filter: filter),
             const SizedBox(
               height: 50,
             ),

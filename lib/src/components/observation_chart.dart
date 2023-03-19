@@ -3,7 +3,10 @@ import 'package:dashboard/src/core/models/chart_line.dart';
 import 'package:fl_chart/fl_chart.dart';
 
 class ObservationChart extends StatelessWidget {
-  const ObservationChart({super.key, this.data = const []});
+  const ObservationChart(
+      {super.key, this.data = const [], required this.filter});
+
+  final Function()? filter;
 
   final List<ChartLine> data;
   @override
@@ -52,7 +55,10 @@ class ObservationChart extends StatelessWidget {
                     ),
                   ),
                   const Spacer(),
-                  const Icon(Icons.more_vert).paddingOnly(right: 20),
+                  InkWell(
+                      onTap: filter,
+                      child:
+                          const Icon(Icons.more_vert).paddingOnly(right: 20)),
                 ],
               ).paddingOnly(left: 20, top: 15, bottom: 5),
               _BarChart(data: data)
